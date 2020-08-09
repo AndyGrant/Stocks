@@ -34,6 +34,7 @@ class Sheet(object):
         worksheet.update_value("A1", title_sentence.format(day))
         columns = [[f, *Stock(f, fname).compute_model(day)] for f in tickers]
         worksheet.update_values(crange="A4:C1500", values=columns)
+        worksheet.resize(rows=3+len(tickers))
 
     def update_worksheet(self, day, tickers, fname="stock_data.log"):
 
