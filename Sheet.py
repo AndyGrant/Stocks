@@ -1,3 +1,5 @@
+import time, re
+
 from Stock import Stock
 from pygsheets import authorize as pygauthorize
 from pygsheets.exceptions import WorksheetNotFound
@@ -7,6 +9,17 @@ class Sheet(object):
     def __init__(self, sheet_name):
         self.credentials = pygauthorize()
         self.spreadsheet = self.credentials.open(sheet_name)
+
+    def delete_worksheets(self):
+
+        # Fetch all existing worksheets for YYYY-MM-DD
+        worksheets = self.spreadsheet.worksheets()[::]
+        worksheets = [f for f in worksheets if re.search("[0-9]{4}-[0-9]{2}-[0-9]{2}", f.title)]
+
+        # Delete all worksheets for YYYY-MM-DD
+        for worksheet in worksheets:
+            print ("Deleting Worksheet for {}".format(worksheet.title))
+            self.spreadsheet.del_worksheet(worksheet); time.sleep(1)
 
     def init_worksheet(self, day, tickers, fname="stock_data.log"):
 
@@ -42,3 +55,6 @@ class Sheet(object):
 
         values = [[A, B] for A, B in zip(pre_market, open_market)]
         worksheet.update_values(crange="D4:E1500", values=values)
+
+if __name__ == "__main__":
+    Sheet("Stock Market Predictions Model").delete_worksheets()
