@@ -1,11 +1,13 @@
 import yfinance
 
 TICKERS = [
-    "MTNB", "PTN" , "ZIOP", "NERV", "AEZS",
-    "AMD" , "MSFT", "TSLA", "INTC", "AAPL",
-    "NCLH", "CCL" , "RCL" , "SLM" , "NAVI",
-    "SNDE", "CEI" , "OXY" , "PBF" , "XOM" ,
-    "T"   , "VZ"  , "F"   , "GE"  , "WMT" ,
+    "MTNB", "PTN" , "ZIOP", "NERV", "AEZS", "BCRX", # Bio Pharmaceutical
+    "SNDE", "CEI" , "OXY" , "PBF" , "XOM" , "BP"  , # Oil, Gas & Energy
+    "NCLH", "CCL" , "RCL" , "MGM" , "IMAX", "GDEN", # Hospitality & Entertainment
+    "AMD" , "INTC", "TSM" , "FB"  , "AAPL", "MSFT", # SemiConductors & Big Tech
+    "SLM" , "NAVI", "BAC" , "WFC" , "ISBC", "ISBC", # Banking & Finance
+    "T"   , "VZ"  , "CSCO", "TMUS", "AMX" , "NOK" , # Telecommunications
+    "F"   , "TM"  , "CE"  , "WMT" , "TGT" , "CVS" , # Automakers and Retail
 ]
 
 class StockTickers(object):
